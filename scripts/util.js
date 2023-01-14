@@ -1,16 +1,15 @@
-// const { SupportedPackages } = require("./webgazer");
+var hasSpeechSynthesis;
 
 if ('speechSynthesis' in window) {
   // Speech Synthesis supported 🎉
+  hasSpeechSynthesis = true;
  }else{
    // Speech Synthesis Not Supported 😣
    alert("Sorry, your browser doesn't support text to speech!");
+   hasSpeechSynthesis = false;
  }
 
-
-
-
-navigator.mediaDevices.getDisplayMedia({audio: true}).then(stream => {
+navigator.mediaDevices.getDisplayMedia({audio: true, preferCurrentTab: true}).then(stream => {
     if(!api_key) return alert('You must provide a Deepgram API Key in the options page.')
 
     else if(stream.getAudioTracks().length == 0) {
@@ -19,28 +18,31 @@ navigator.mediaDevices.getDisplayMedia({audio: true}).then(stream => {
     } else {
         const recorder = new MediaRecorder(stream, { mimeType: 'audio/webm' })
 
+        if (hasSpeechSynthesis)
+        {
+            const videos = Array.from(document.getElementsByTagName("video"));
+            videos.map(video => video.addEventListener("play", (e) => {
+                video.volume = 0.01;
+            }));
+        }
+
         socket = new WebSocket('wss://api.deepgram.com/v1/listen?model=general-enhanced', ['token', api_key])
 
         recorder.addEventListener('dataavailable', evt => {
             if(evt.data.size > 0 && socket.readyState == 1) socket.send(evt.data)
         })
 
-        const videos = Array.from(document.getElementsByTagName("video"));
-        videos.map(video => video.addEventListener("play", (e) => {
-            video.volume = 0.01;
-        }))
-
         socket.onopen = () => { recorder.start(250) }
 
         socket.onmessage = msg => {
             const { transcript } = JSON.parse(msg.data).channel.alternatives[0]
             if(transcript) {
-
-                updateSubs(transcript)
-                speakForProf(transcript)
-
+                updateSubs(transcript);
+                if (hasSpeechSynthesis)
+                {
+                    speakForProf(transcript);
+                }
             }
-
         }
     }
 
@@ -66,7 +68,7 @@ function speakForProf(transcript) {
   msg.voice = voices[Math.floor(random * 6)]
   msg.pitch = random * 2
   msg.volume = 1.75
-  msg.rate = 1.2
+  msg.rate = 1.5
   // msg.lang = 'es';
   window.speechSynthesis.speak(msg);
 }
