@@ -1,5 +1,18 @@
+// const { SupportedPackages } = require("./webgazer");
+
+if ('speechSynthesis' in window) {
+  // Speech Synthesis supported 🎉
+ }else{
+   // Speech Synthesis Not Supported 😣
+   alert("Sorry, your browser doesn't support text to speech!");
+ }
+
+
+
+
 navigator.mediaDevices.getDisplayMedia({audio: true}).then(stream => {
     if(!api_key) return alert('You must provide a Deepgram API Key in the options page.')
+
     else if(stream.getAudioTracks().length == 0) {
         alert('You must share your tab with audio. Refresh the page.');
         location.reload();
@@ -22,20 +35,40 @@ navigator.mediaDevices.getDisplayMedia({audio: true}).then(stream => {
         socket.onmessage = msg => {
             const { transcript } = JSON.parse(msg.data).channel.alternatives[0]
             if(transcript) {
-                
+
                 updateSubs(transcript)
+                speakForProf(transcript)
+
             }
+
         }
     }
+
 })
 
 function updateSubs(transcript) {
   console.log(transcript)
   var p = document.querySelector("#hnr23Blur p");
+
   if (p !== null)
   {
     p.innerHTML = transcript
   }
 
 }
+var voices = window.speechSynthesis.getVoices();
+
+function speakForProf(transcript) {
+  var msg = new SpeechSynthesisUtterance();
+  var random = Math.random()
+  msg.text = transcript
+
+  msg.voice = voices[Math.floor(random * 6)]
+  msg.pitch = random * 2
+  msg.volume = 1.75
+  msg.rate = 1.2
+  // msg.lang = 'es';
+  window.speechSynthesis.speak(msg);
+}
+
 
