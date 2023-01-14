@@ -1,7 +1,4 @@
-// const api_key = "ed3dbcdd87df8db0333bcdfae82be6805988853d";
-// api_key = chrome.runtime.getURL("./constant.js")
 
-// api_key = process.env.API_KEY
 
 const constraints = {
     video: {
