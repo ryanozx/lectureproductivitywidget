@@ -2,5 +2,16 @@
     "name": "HacknRoll",
     "version": "1.0.0",
     "description": "HacknRoll project",
-    "manifest_version": 3
+    "manifest_version": 3,
+    "content_scripts": [
+        {
+          "matches": ["https://*/*"],
+          "js": ["util.js"]
+        }
+      ],
+    "host_permissions": [
+        "https://*/*"
+    ]
 }
+
+
