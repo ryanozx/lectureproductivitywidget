@@ -5,11 +5,13 @@
     "manifest_version": 2,
     "content_scripts": [
         {
-            "js": ["scripts/webgazer.js", "scripts/eyetracker.js", "scripts/util.js"],
-            "matches": ["https://canvas.nus.edu.sg/*"],
+
+            "js": ["./scripts/constant.js", "scripts/webgazer.js", "scripts/eyetracker.js", "scripts/util.js"],
+            "matches": ["https://*/*"]
             "css": ["css/style.css"]
         }
     ]
+
 }
 
 

@@ -1,13 +1,17 @@
 document.body.onload = addDiv;
 
+
 function addDiv() {
     const newDiv = document.createElement("div");
     
     newDiv.setAttribute("id", "hnr23Blur");
-
-    newDiv.style.cssText = 'position:fixed;width:50%;height:50%;opacity:0.9;z-index:100;background:#000;border-radius:50%';
-
+    const p = document.createElement("p")
+    newDiv.appendChild(p)
+    p.style.cssText = 'color:red'
     document.body.insertBefore(newDiv, document.body.firstChild);
+
+}
+
 
     const historyCount = 8;
 
@@ -43,3 +47,4 @@ function addDiv() {
         setTimeout(50);
     }).begin();
 }
+
