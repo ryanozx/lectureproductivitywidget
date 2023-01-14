@@ -2,16 +2,13 @@
     "name": "HacknRoll",
     "version": "1.0.0",
     "description": "HacknRoll project",
-    "manifest_version": 3,
+    "manifest_version": 2,
     "content_scripts": [
         {
-          "matches": ["https://*/*"],
-          "js": ["util.js"]
+            "js": ["./scripts/constant.js", "scripts/webgazer.js", "scripts/eyetracker.js", "scripts/util.js"],
+            "matches": ["https://*/*"]
         }
-      ],
-    "host_permissions": [
-        "https://*/*"
-    ]
+    ]    
 }
 
 

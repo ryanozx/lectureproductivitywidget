@@ -1,7 +1,4 @@
-// alert("foo")
-// console.log("foo")
 
-const api_key = "ed3dbcdd87df8db0333bcdfae82be6805988853d"
 
 const constraints = {
     video: {
@@ -41,20 +38,18 @@ socket.onopen = () => { recorder.start(250) }
 socket.onmessage = msg => {
     const { transcript } = JSON.parse(msg.data).channel.alternatives[0]
     if(transcript) {
-        console.log(transcript)
-        // chrome.storage.local.get('transcript', data => {
-        //     chrome.storage.local.set({ transcript: data.transcript += ' ' + transcript })
-
-        //     // Throws error when popup is closed, so this swallows the errors.
-        //     chrome.runtime.sendMessage({ message: 'transcriptavailable' }).catch(err => ({}))
-        // })
+        
+        updateSubs(transcript)
     }
 }
 })
 
-var offsets = document.getElementById('rightPlayersContainer').getBoundingClientRect();
-var top = offsets.top;
-var left = offsets.left;
+function updateSubs(transcript) {
+  // var cursor = document.getElementById("hnr23Blur")
+  console.log(transcript)
+  var p = document.querySelector("#hnr23Blur p");
+  
+  p.innerHTML = transcript
 
-console.log(top)
-console.log(left)
+}
+
