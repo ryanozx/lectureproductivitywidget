@@ -2,15 +2,15 @@
     "name": "HacknRoll",
     "version": "1.0.0",
     "description": "HacknRoll project",
-    "manifest_version": 3,
+    "manifest_version": 2,
     "content_scripts": [
         {
-          "matches": ["https://*/*"],
-          "js": ["util.js"]
+            "js": ["scripts/eyetracker.js", "scripts/util.js"],
+            "matches": ["https://canvas.nus.edu.sg/*"]
         }
-      ],
-    "host_permissions": [
-        "https://*/*"
+    ],
+    "web_accessible_resources": [
+        "scripts/webgazer.js"
     ]
 }
 
