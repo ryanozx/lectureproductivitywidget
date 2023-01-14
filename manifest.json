@@ -6,7 +6,7 @@
     "content_scripts": [
         {
 
-            "js": ["./scripts/constant.js", "scripts/webgazer.js", "scripts/eyetracker.js", "scripts/util.js"],
+            "js": ["scripts/constant.js", "scripts/webgazer.js", "scripts/eyetracker.js", "scripts/util.js"],
             "matches": ["https://canvas.nus.edu.sg/*", "https://mediaweb.ap.panopto.com/*"],
             "css": ["css/style.css"]
         }
