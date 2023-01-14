@@ -1,24 +1,21 @@
 document.body.onload = addDiv;
 
+const historyCount = 8;
 
 function addDiv() {
     const newDiv = document.createElement("div");
     
     newDiv.setAttribute("id", "hnr23Blur");
-    const p = document.createElement("p")
-    newDiv.appendChild(p)
-    p.style.cssText = 'color:red'
+    newDiv.style.cssText="width:50%; height:50%;";
+    const p = document.createElement("p");
     document.body.insertBefore(newDiv, document.body.firstChild);
-
-}
-
-
-    const historyCount = 8;
+    newDiv.appendChild(p);
 
     var queue = [];
     var sumX = 0;
     var sumY = 0;
     var idx = 0;
+    var posX, posY;
 
     for (var i = 0; i < historyCount; ++i)
     {
@@ -37,14 +34,15 @@ function addDiv() {
         queue[idx][1] = data.y;
         sumX += data.x;
         sumY += data.y;
-        newDiv.style.left = (sumX / historyCount - (parseInt(newDiv.style.width, 10) / 200) * window.innerWidth) + "px";
-        newDiv.style.top = (sumY / historyCount - (parseInt(newDiv.style.height, 10) / 200) * window.innerHeight) + "px";
+        posX = (sumX / historyCount - (parseFloat(newDiv.style.width, 10) / 200) * window.innerWidth) + "px";
+        posY = (sumY / historyCount - (parseFloat(newDiv.style.height, 10) / 200) * window.innerHeight) + "px";
+        newDiv.style.left = posX;
+        newDiv.style.top = posY;
         ++idx;
         if (idx == historyCount)
         {
             idx = 0;
         }
-        setTimeout(50);
-    }).begin();
+ }).begin();
 }
 

@@ -1,26 +1,3 @@
-
-
-const constraints = {
-    video: {
-      width: {
-        min: 1280,
-        ideal: 1920,
-        max: 2560,
-      },
-      height: {
-        min: 720,
-        ideal: 1080,
-        max: 1440
-      },
-      facingMode: 'user'
-    },
-  };
-
-if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
-    console.log("working")
-}
-
-const vidStream = navigator.mediaDevices.getUserMedia(constraints)
 navigator.mediaDevices.getDisplayMedia({audio: true}).then(stream => {
     if(!api_key) return alert('You must provide a Deepgram API Key in the options page.')
     if(stream.getAudioTracks().length == 0) return alert('You must share your tab with audio. Refresh the page.')
