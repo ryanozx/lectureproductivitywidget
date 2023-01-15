@@ -23,7 +23,7 @@ Quantifying where the user is looking is accomplished using WebGazer.js eye-trac
 - JavaScript
 - LOLCODE
 
-## What's next for Lecture Obfuscator
+## What's next for Lecture Productivity Extension
 We understand users love customisability, therefore future improvements could add:
 - Support for multiple languages
 - Different obstruction effects (e.g. blur)
