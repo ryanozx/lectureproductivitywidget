@@ -2,7 +2,7 @@
     background-color: #FF0000;
     animation: bgBlurColour 10s infinite linear;
     position:fixed; 
-    opacity:0.95; 
+    /* opacity:0.95;  */
     z-index:100; 
     border-radius:50%;
     vertical-align: middle;
