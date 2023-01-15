@@ -66,10 +66,8 @@ function speakForProf(transcript) {
   msg.text = transcript
 
   msg.voice = voices[Math.floor(random * 6)]
-  msg.pitch = random * 2
   msg.volume = 1.75
-  msg.rate = 1.5
-  // msg.lang = 'es';
+  msg.rate = 1.3
   window.speechSynthesis.speak(msg);
 }
 
